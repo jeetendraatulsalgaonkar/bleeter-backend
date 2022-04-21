@@ -1,15 +1,18 @@
 package com.abc.bleeter.bleeterbackend.controller
 
-import com.abc.bleeter.bleeterbackend.model.Bleet
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.ResponseBody
 
 @Controller
+@RequestMapping("/bleeter")
 class BleeterBackendController {
 
-    @GetMapping("/")
-    fun blog(bleet: Bleet): String {
-        return bleet.bleetMessage;
+    @GetMapping("/getBleets")
+    @ResponseBody
+    fun blog(): String {
+        return "Hello World!";
     }
 
 }
