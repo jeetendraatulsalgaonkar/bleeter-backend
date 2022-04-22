@@ -37,5 +37,5 @@ class Bleet (
     /**
      * Time at which the bleet was sent out.
      */
-    val bleetTimestamp: Timestamp
+    val bleetTimestamp: String
     )
