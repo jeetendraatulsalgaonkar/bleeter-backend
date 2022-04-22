@@ -7,4 +7,8 @@ pipeline {
             }
         }
     }
+
+    triggers {
+        githubPush()
+    }
 }
