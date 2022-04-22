@@ -2,6 +2,7 @@ package com.abc.bleeter.bleeterbackend.model
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import lombok.AllArgsConstructor
+import lombok.Builder
 import lombok.Getter
 import lombok.NoArgsConstructor
 import lombok.Setter
@@ -16,6 +17,7 @@ import java.sql.Timestamp
 @NoArgsConstructor
 @Jacksonized
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Builder
 @Document("bleets")
 class Bleet (
 

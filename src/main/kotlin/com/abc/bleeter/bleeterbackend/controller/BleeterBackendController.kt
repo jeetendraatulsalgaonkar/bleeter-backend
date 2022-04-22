@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseBody
 
 
@@ -18,8 +19,14 @@ class BleeterBackendController {
 
     @GetMapping("/getBleets")
     @ResponseBody
-    fun blog(): String {
+    fun getBleets(): String {
         return ObjectMapper().writer().withDefaultPrettyPrinter().writeValueAsString(service.findAllBleets());
+    }
+
+    @GetMapping("/getBleetsByBleeter")
+    @ResponseBody
+    fun getBleetsByBleeter(@RequestParam bleetUser: String): String {
+        return ObjectMapper().writer().withDefaultPrettyPrinter().writeValueAsString(service.findAllBleetsByBleeter(bleetUser));
     }
 
 }

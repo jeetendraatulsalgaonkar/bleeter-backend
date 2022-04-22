@@ -1,9 +1,11 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 
 plugins {
 	id("org.springframework.boot") version "2.6.6-SNAPSHOT"
 	id("io.spring.dependency-management") version "1.0.11.RELEASE"
 	kotlin("jvm") version "1.6.21"
+	kotlin("kapt") version "1.6.21"
 	kotlin("plugin.spring") version "1.6.21"
 }
 
@@ -31,6 +33,8 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib")
+	implementation("org.mapstruct:mapstruct:1.5.0.RC1")
+	kapt("org.mapstruct:mapstruct-processor:1.5.0.RC1")
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
 	// testImplementation("org.springframework.boot:spring-boot-starter-test")
@@ -46,4 +50,8 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+fun kapt(options: String) {
+
 }

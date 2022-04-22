@@ -21,4 +21,6 @@ interface BleetsRepository : MongoRepository<Bleet, String> {
     override fun deleteAll();
 
     override fun <S : Bleet?> exists(example: Example<S>): Boolean;
+
+    fun findBleetsByBleetUser(bleetUser: String): MutableList<Bleet>;
 }
