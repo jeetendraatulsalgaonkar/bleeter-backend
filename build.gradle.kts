@@ -37,8 +37,12 @@ dependencies {
 	kapt("org.mapstruct:mapstruct-processor:1.5.0.RC1")
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
-	// testImplementation("org.springframework.boot:spring-boot-starter-test")
-	// testImplementation("org.springframework.batch:spring-batch-test")
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.springframework.batch:spring-batch-test")
+	testImplementation("org.junit.jupiter:junit-jupiter-api:5.3.1")
+	testImplementation("org.junit.jupiter:junit-jupiter-engine:5.3.1")
+	testImplementation("org.mockito:mockito-core:4.5.0")
+	testImplementation("org.mockito:mockito-all:1.10.19")
 }
 
 tasks.withType<KotlinCompile> {

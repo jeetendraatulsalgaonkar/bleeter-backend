@@ -6,9 +6,14 @@ pipeline {
                 sh 'gradle build'
             }
         }
+        stage('Test') {
+            steps {
+                sh 'gradle test'
+            }
+        }
     }
 
     triggers {
-        githubPush()
+        pollSCM('')
     }
 }
