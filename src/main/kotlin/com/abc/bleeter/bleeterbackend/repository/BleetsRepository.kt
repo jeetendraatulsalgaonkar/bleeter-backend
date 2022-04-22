@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.repository.MongoRepository
 import java.util.*
 
 interface BleetsRepository : MongoRepository<Bleet, String> {
-    override fun <S : Bleet?> save(entity: S): S;
+    override fun <S : Bleet> save(entity: S): S;
 
     override fun findById(id: String): Optional<Bleet>;
 
@@ -20,7 +20,7 @@ interface BleetsRepository : MongoRepository<Bleet, String> {
 
     override fun deleteAll();
 
-    override fun <S : Bleet?> exists(example: Example<S>): Boolean;
+    override fun <S : Bleet> exists(example: Example<S>): Boolean;
 
     fun findBleetsByBleetUser(bleetUser: String): MutableList<Bleet>;
 }
