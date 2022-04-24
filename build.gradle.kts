@@ -1,5 +1,4 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 
 plugins {
 	id("org.springframework.boot") version "2.6.6-SNAPSHOT"
@@ -30,7 +29,7 @@ dependencies {
 	implementation("org.springframework.data:spring-data-mongodb:3.3.4")
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb:2.6.6")
 	implementation("org.springframework.boot:spring-boot-starter-web")
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+	implementation("com.google.code.gson:gson:2.8.5")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib")
 	implementation("org.mapstruct:mapstruct:1.5.0.RC1")

@@ -21,6 +21,10 @@ class BleeterBackendService {
         return bleetsRepository.findBleetsByBleetUser(user);
     }
 
+    fun processBleet(bleet: Bleet) : Bleet {
+        return bleetsRepository.save(bleet);
+    }
+
     private fun getDateTime(s: String): String? {
         try {
             val sdf = SimpleDateFormat("MM/dd/yyyy")
