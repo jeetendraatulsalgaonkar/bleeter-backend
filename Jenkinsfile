@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    triggers {
+        githubPush()
+    }
     stages {
         stage('Build') {
             steps {
@@ -11,9 +14,5 @@ pipeline {
                 sh 'gradle clean test'
             }
         }
-    }
-
-    triggers {
-        pollSCM('')
     }
 }

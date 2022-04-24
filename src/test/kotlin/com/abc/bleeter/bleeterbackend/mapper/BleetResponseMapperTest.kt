@@ -12,26 +12,26 @@ class BleetResponseMapperTest {
 
     @Test
     fun testBleetToBleetResponse() {
-        val mapper = Mappers.getMapper(BleetResponseMapper::class.java);
+        val mapper = Mappers.getMapper(BleetResponseMapper::class.java)
 
-        val bleet = Bleet("24586846513513", "Twitter without T", "ElonMusk", "2022-04-21 19:49:51")
+        val bleet = Bleet("62619949b4029ddfc3bf3e98", "Twitter without T", "ElonMusk", "2022-04-21 19:49:51")
         val bleetResponse = mapper.bleetToBleetResponse(bleet)
         assertThat(bleetResponse).isNotNull
-        assertEquals(bleetResponse.bleetId, bleet.bleetId)
+        assertEquals(bleetResponse.id, bleet.id)
         assertEquals(bleetResponse.bleetMessage, bleet.bleetMessage)
-        assertEquals(bleetResponse.bleetTimestamp, bleet.bleetTimestamp.toString())
+        assertEquals(bleetResponse.bleetTimestamp, bleet.bleetTimestamp)
     }
 
     @Test
     fun testBleetResponseToBleet() {
-        val mapper = Mappers.getMapper(BleetResponseMapper::class.java);
+        val mapper = Mappers.getMapper(BleetResponseMapper::class.java)
 
-        val bleetResponse = BleetResponse("24586846513513", "Twitter without T", "ElonMusk", "2022-04-21 19:49:51")
+        val bleetResponse = BleetResponse("62619949b4029ddfc3bf3e98", "Twitter without T", "ElonMusk", "2022-04-21 19:49:51")
         val bleet = mapper.bleetResponseToBleet(bleetResponse)
         assertThat(bleetResponse).isNotNull
-        assertEquals(bleetResponse.bleetId, bleet.bleetId)
+        assertEquals(bleetResponse.id, bleet.id)
         assertEquals(bleetResponse.bleetMessage, bleet.bleetMessage)
-        assertEquals(bleetResponse.bleetTimestamp, bleet.bleetTimestamp.toString())
+        assertEquals(bleetResponse.bleetTimestamp, bleet.bleetTimestamp)
     }
 
 }

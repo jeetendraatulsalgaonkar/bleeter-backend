@@ -28,6 +28,6 @@ class BleetBackendProcess {
     }
 
     fun processBleet(bleetRequest: BleetRequest) : String {
-        return gson.toJson(service.processBleet(mapper.bleetRequestToBleet(bleetRequest)), List::class.java)
+        return gson.toJson(service.processBleet(mapper.bleetRequestToBleet(bleetRequest)))
     }
 }

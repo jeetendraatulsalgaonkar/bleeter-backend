@@ -13,7 +13,7 @@ import org.springframework.data.annotation.Id
 class BleetResponse (
 
     @Id
-    val bleetId: String,
+    val id: String,
 
     /**
      * The actual Bleet

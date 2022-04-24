@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor
 import lombok.Setter
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
+import javax.validation.constraints.NotNull
 
 @Getter
 @Setter
@@ -19,20 +20,23 @@ import org.springframework.data.mongodb.core.mapping.Document
 class Bleet (
 
     @Id
-    val bleetId: String,
+    val id: String,
 
     /**
      * The actual Bleet
      */
+    @NotNull
     val bleetMessage: String,
 
     /**
      * The person who sent out a bleet.
      */
+    @NotNull
     val bleetUser: String,
 
     /**
      * Time at which the bleet was sent out.
      */
+    @NotNull
     val bleetTimestamp: String
     )
