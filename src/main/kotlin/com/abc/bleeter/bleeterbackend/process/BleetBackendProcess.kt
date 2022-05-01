@@ -2,6 +2,7 @@ package com.abc.bleeter.bleeterbackend.process
 
 import com.abc.bleeter.bleeterbackend.mapper.BleetResponseMapper
 import com.abc.bleeter.bleeterbackend.model.BleetRequest
+import com.abc.bleeter.bleeterbackend.model.DeleteBleetRequest
 import com.abc.bleeter.bleeterbackend.service.BleeterBackendService
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -24,10 +25,14 @@ class BleetBackendProcess {
     }
 
     fun findAllBleetsByBleeter(user: String): String {
-        return gson.toJson(service.findAllBleets(), List::class.java)
+        return gson.toJson(service.findAllBleetsByBleeter(user), List::class.java)
     }
 
     fun processBleet(bleetRequest: BleetRequest) : String {
         return gson.toJson(service.processBleet(mapper.bleetRequestToBleet(bleetRequest)))
+    }
+
+    fun deleteBleetsByBleeterAndBleetMessage(deleteBleetRequest: DeleteBleetRequest): String? {
+        return gson.toJson(service.deleteBleetsByBleeterAndBleetMessage(deleteBleetRequest))
     }
 }

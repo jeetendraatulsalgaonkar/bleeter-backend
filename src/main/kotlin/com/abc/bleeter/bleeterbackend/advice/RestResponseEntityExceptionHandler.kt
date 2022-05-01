@@ -17,7 +17,7 @@ class RestResponseEntityExceptionHandler : ResponseEntityExceptionHandler() {
         val bodyOfResponse = "This should be application specific"
         return handleExceptionInternal(
             ex, bodyOfResponse,
-            HttpHeaders(), HttpStatus.CONFLICT, request
+            HttpHeaders(), HttpStatus.BAD_REQUEST, request
         )
     }
 }

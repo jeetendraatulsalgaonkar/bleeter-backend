@@ -18,15 +18,18 @@ class BleetResponse (
     /**
      * The actual Bleet
      */
+    @NonNull
     val bleetMessage: String,
 
     /**
      * The person who sent out a bleet.
      */
+    @NonNull
     val bleetUser: String,
 
     /**
      * Time at which the bleet was sent out.
      */
+    @NonNull
     val bleetTimestamp: String
 )

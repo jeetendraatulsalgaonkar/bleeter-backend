@@ -1,8 +1,8 @@
 package com.abc.bleeter.bleeterbackend.controller
 
 import com.abc.bleeter.bleeterbackend.model.BleetRequest
+import com.abc.bleeter.bleeterbackend.model.DeleteBleetRequest
 import com.abc.bleeter.bleeterbackend.process.BleetBackendProcess
-import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -45,7 +45,18 @@ class BleeterBackendController {
     )
     @ResponseBody
     fun bleet(@RequestBody bleetRequest: BleetRequest): ResponseEntity<String> {
-        return ResponseEntity.status(201).body(ObjectMapper().writer().withDefaultPrettyPrinter().writeValueAsString(process.processBleet(bleetRequest)))
+        return ResponseEntity.status(201).body(process.processBleet(bleetRequest))
+    }
+
+    @RequestMapping(
+        value=["/deleteBleetsByBleeterAndBleetMessage"],
+        method = [RequestMethod.DELETE],
+        produces = [MediaType.APPLICATION_JSON_VALUE],
+        consumes = [MediaType.APPLICATION_JSON_VALUE]
+    )
+    @ResponseBody
+    fun deleteBleetsByBleeterAndBleetMessage(@RequestBody deleteBleetRequest: DeleteBleetRequest): ResponseEntity<String> {
+        return ResponseEntity.status(204).body(process.deleteBleetsByBleeterAndBleetMessage(deleteBleetRequest))
     }
 
 }

@@ -1,6 +1,7 @@
 package com.abc.bleeter.bleeterbackend.service
 
 import com.abc.bleeter.bleeterbackend.model.Bleet
+import com.abc.bleeter.bleeterbackend.model.DeleteBleetRequest
 import com.abc.bleeter.bleeterbackend.repository.BleetsRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -21,5 +22,9 @@ class BleeterBackendService {
 
     fun processBleet(bleet: Bleet) : Bleet {
         return bleetsRepository.save(bleet)
+    }
+
+    fun deleteBleetsByBleeterAndBleetMessage(deleteBleetRequest: DeleteBleetRequest) {
+        return bleetsRepository.deleteBleetsByBleetUserAndBleetMessage(deleteBleetRequest.bleeter, deleteBleetRequest.bleetMessage)
     }
 }

@@ -2,7 +2,6 @@ package com.abc.bleeter.bleeterbackend.model
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import lombok.*
-import org.springframework.data.annotation.Id
 
 @Getter
 @Setter
@@ -11,9 +10,6 @@ import org.springframework.data.annotation.Id
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Builder
 class BleetRequest (
-
-    @Id
-    val id: String,
 
     /**
      * The actual Bleet
