@@ -37,13 +37,20 @@ dependencies {
 	kapt("org.mapstruct:mapstruct-processor:1.5.0.RC1")
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.springframework.boot:spring-boot-starter-test") {
+		exclude(group="org.junit.vintage", module="junit-vintage-engine")
+		exclude(group="org.mockito", module="mockito-core")
+	}
 	testImplementation("org.springframework.batch:spring-batch-test")
 	testImplementation("org.junit.jupiter:junit-jupiter-api:5.3.1")
 	testImplementation("org.junit.jupiter:junit-jupiter-engine:5.3.1")
 	testImplementation("org.junit.jupiter:junit-jupiter-params:5.3.1")
 	testImplementation("org.mockito:mockito-core:4.5.0")
 	testImplementation("org.mockito:mockito-all:1.10.19")
+	testImplementation("com.ninja-squad:springmockk:3.0.1")
+	testImplementation("net.bytebuddy:byte-buddy:1.12.9")
+	testImplementation("net.bytebuddy:byte-buddy-agent:1.12.9")
+	testImplementation("org.objenesis:objenesis:3.2")
 }
 
 tasks.withType<KotlinCompile> {

@@ -1,6 +1,8 @@
 package com.abc.bleeter.bleeterbackend.process
 
+import com.abc.bleeter.bleeterbackend.exceptions.NoBleetsDetectedException
 import com.abc.bleeter.bleeterbackend.mapper.BleetResponseMapper
+import com.abc.bleeter.bleeterbackend.model.Bleet
 import com.abc.bleeter.bleeterbackend.model.BleetRequest
 import com.abc.bleeter.bleeterbackend.model.DeleteBleetRequest
 import com.abc.bleeter.bleeterbackend.service.BleeterBackendService
@@ -21,11 +23,15 @@ class BleetBackendProcess {
     private var gson: Gson = GsonBuilder().setPrettyPrinting().create()
 
     fun findAllBleets() : String {
-        return gson.toJson(service.findAllBleets(), List::class.java)
+        var bleets : List<Bleet> = service.findAllBleets()
+        return if (bleets.isNotEmpty()) gson.toJson(bleets, List::class.java) else throw NoBleetsDetectedException("No Bleets Detected!!!")
     }
 
     fun findAllBleetsByBleeter(user: String): String {
-        return gson.toJson(service.findAllBleetsByBleeter(user), List::class.java)
+        var bleetsByBleeter : List<Bleet> = service.findAllBleetsByBleeter(user)
+        return if (bleetsByBleeter.isNotEmpty()) gson.toJson(bleetsByBleeter, List::class.java) else throw NoBleetsDetectedException(
+            "No Bleets for the user $user Detected!!"
+        )
     }
 
     fun processBleet(bleetRequest: BleetRequest) : String {
