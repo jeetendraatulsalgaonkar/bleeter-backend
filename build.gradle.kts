@@ -34,6 +34,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib")
 	implementation("org.mapstruct:mapstruct:1.5.0.RC1")
 	implementation("org.springdoc:springdoc-openapi-ui:1.6.8")
+	implementation("org.hibernate:hibernate-validator:7.0.4.Final")
 	kapt("org.mapstruct:mapstruct-processor:1.5.0.RC1")
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")

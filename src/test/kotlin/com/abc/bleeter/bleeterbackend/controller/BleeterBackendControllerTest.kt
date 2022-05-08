@@ -45,7 +45,7 @@ class BleeterBackendControllerTest (@Autowired val mockMvc: MockMvc) {
     fun getBleets_NoBleetsReturned(bleets: List<Bleet>) {
         every {process.findAllBleets()} throws NoBleetsDetectedException("No Bleets detected!!!")
         mockMvc.perform(get("/bleeter/getBleets"))
-            .andExpect(status().isNoContent)
+            .andExpect(status().isNotFound)
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
     }
 
@@ -66,7 +66,7 @@ class BleeterBackendControllerTest (@Autowired val mockMvc: MockMvc) {
     fun getBleetsByBleeter_NoBleetsReturned(user: String) {
         every {process.findAllBleetsByBleeter(user)} throws NoBleetsDetectedException("No Bleets for the user $user Detected!!")
         mockMvc.perform(get("/bleeter/getBleetsByBleeter?bleetUser=$user"))
-            .andExpect(status().isNoContent)
+            .andExpect(status().isNotFound)
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
     }
 
