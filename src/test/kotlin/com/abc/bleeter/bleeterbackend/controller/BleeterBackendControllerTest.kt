@@ -43,7 +43,7 @@ class BleeterBackendControllerTest (@Autowired val mockMvc: MockMvc) {
     @ParameterizedTest
     @MethodSource("getEmptyBleetList")
     fun getBleets_NoBleetsReturned(bleets: List<Bleet>) {
-        every {process.findAllBleets()} throws NoBleetsDetectedException("No Bleets detected!!!")
+        every {process.findAllBleets()} throws NoBleetsDetectedException("No Bleets detected!!!", this.javaClass, "findAllBleets")
         mockMvc.perform(get("/bleeter/getBleets"))
             .andExpect(status().isNotFound)
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -64,7 +64,7 @@ class BleeterBackendControllerTest (@Autowired val mockMvc: MockMvc) {
     @ParameterizedTest
     @MethodSource("getBleetUser")
     fun getBleetsByBleeter_NoBleetsReturned(user: String) {
-        every {process.findAllBleetsByBleeter(user)} throws NoBleetsDetectedException("No Bleets for the user $user Detected!!")
+        every {process.findAllBleetsByBleeter(user)} throws NoBleetsDetectedException("No Bleets for the user $user Detected!!", this.javaClass, "getBleetsByBleeter")
         mockMvc.perform(get("/bleeter/getBleetsByBleeter?bleetUser=$user"))
             .andExpect(status().isNotFound)
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))

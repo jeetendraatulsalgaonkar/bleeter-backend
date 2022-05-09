@@ -24,7 +24,7 @@ class RestResponseEntityExceptionHandler : ResponseEntityExceptionHandler() {
     @ExceptionHandler(value = [IllegalArgumentException::class, IllegalStateException::class])
     fun handleIllegalArgumentException(ex: RuntimeException, request: WebRequest): ResponseEntity<String> {
         val bodyOfResponse = gson.toJson(ex.message)
-        val apiError = ApiError(HttpStatus.BAD_REQUEST, ex, ex.message!!)
+        val apiError = ApiError(HttpStatus.BAD_REQUEST, ex)
 
 
         return handleExceptionInternal(
@@ -34,8 +34,8 @@ class RestResponseEntityExceptionHandler : ResponseEntityExceptionHandler() {
     }
 
     @ExceptionHandler(value = [NoBleetsDetectedException::class])
-    fun handleNoBleetException(ex: NoBleetsDetectedException, request: WebRequest): ResponseEntity<ApiError> {
-        val apiError = ApiError(NOT_FOUND)
+    fun handleNoBleetException(ex: NoBleetsDetectedException): ResponseEntity<Any> {
+        val apiError = ApiError(NOT_FOUND, ex)
         apiError.setMessage(ex.getMessage())
         return buildResponseEntity(apiError)
     }
@@ -52,8 +52,8 @@ class RestResponseEntityExceptionHandler : ResponseEntityExceptionHandler() {
         }
         return ResponseEntity(body, headers, status)
     }
-    private fun buildResponseEntity(apiError: ApiError): ResponseEntity<ApiError> {
+
+    private fun buildResponseEntity(apiError: ApiError): ResponseEntity<Any> {
         return ResponseEntity(apiError, apiError.getStatus())
     }
-
 }

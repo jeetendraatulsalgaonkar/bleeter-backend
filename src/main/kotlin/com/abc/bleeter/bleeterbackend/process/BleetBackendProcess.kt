@@ -24,13 +24,13 @@ class BleetBackendProcess {
 
     fun findAllBleets() : String {
         var bleets : List<Bleet> = service.findAllBleets()
-        return if (bleets.isNotEmpty()) gson.toJson(bleets, List::class.java) else throw NoBleetsDetectedException("No Bleets Detected!!!")
+        return if (bleets.isNotEmpty()) gson.toJson(bleets, List::class.java) else throw NoBleetsDetectedException("No Bleets Detected!!!", Bleet::class.java, "bleets")
     }
 
     fun findAllBleetsByBleeter(user: String): String {
         var bleetsByBleeter : List<Bleet> = service.findAllBleetsByBleeter(user)
         return if (bleetsByBleeter.isNotEmpty()) gson.toJson(bleetsByBleeter, List::class.java) else throw NoBleetsDetectedException(
-            "No Bleets for the user $user Detected!!"
+            "No Bleets for the user $user Detected!!", Bleet::class.java, "bleetUser", user
         )
     }
 
