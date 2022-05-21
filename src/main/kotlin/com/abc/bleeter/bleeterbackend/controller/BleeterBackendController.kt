@@ -1,6 +1,8 @@
 package com.abc.bleeter.bleeterbackend.controller
 
+import com.abc.bleeter.bleeterbackend.model.Bleet
 import com.abc.bleeter.bleeterbackend.model.BleetRequest
+import com.abc.bleeter.bleeterbackend.model.Bleets
 import com.abc.bleeter.bleeterbackend.model.DeleteBleetRequest
 import com.abc.bleeter.bleeterbackend.process.BleetBackendProcess
 import org.springframework.beans.factory.annotation.Autowired
@@ -9,7 +11,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
 
-
+@CrossOrigin(origins = ["http://localhost:3000"])
 @Controller
 @RequestMapping("/bleeter")
 class BleeterBackendController {
@@ -23,7 +25,7 @@ class BleeterBackendController {
         produces = [MediaType.APPLICATION_JSON_VALUE]
     )
     @ResponseBody
-    fun getBleets(): ResponseEntity<String> {
+    fun getBleets(): ResponseEntity<Bleets> {
         return ResponseEntity.ok().body(process.findAllBleets())
     }
 
