@@ -29,7 +29,7 @@ class RestResponseEntityExceptionHandler : ResponseEntityExceptionHandler() {
 
         return handleExceptionInternal(
             ex, bodyOfResponse,
-            getResponseHeaders(), HttpStatus.BAD_REQUEST, request
+            getResponseHeaders(), apiError.getStatus(), request
         )
     }
 

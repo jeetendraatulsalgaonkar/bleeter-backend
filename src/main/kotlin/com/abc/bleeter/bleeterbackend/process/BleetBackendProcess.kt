@@ -9,7 +9,6 @@ import com.abc.bleeter.bleeterbackend.model.DeleteBleetRequest
 import com.abc.bleeter.bleeterbackend.service.BleeterBackendService
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import org.apache.commons.lang3.mutable.Mutable
 import org.mapstruct.factory.Mappers
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
@@ -25,14 +24,13 @@ class BleetBackendProcess {
     private var gson: Gson = GsonBuilder().setPrettyPrinting().create()
 
     fun findAllBleets() : Bleets {
-        var bleets = Bleets()
+        val bleets = Bleets()
         bleets.addAllBleets(service.findAllBleets())
-        println(if (bleets != null) bleets else throw NoBleetsDetectedException("No Bleets Detected!!!", Bleet::class.java, "bleets"))
-        return if (bleets!= null) bleets else throw NoBleetsDetectedException("No Bleets Detected!!!", Bleet::class.java, "bleets")
+        return if (bleets.bleets.isNotEmpty()) bleets else throw NoBleetsDetectedException("No Bleets Detected!!!", Bleet::class.java, "Bleets not found", "bleets")
     }
 
     fun findAllBleetsByBleeter(user: String): String {
-        var bleetsByBleeter : List<Bleet> = service.findAllBleetsByBleeter(user)
+        val bleetsByBleeter : List<Bleet> = service.findAllBleetsByBleeter(user)
         return if (bleetsByBleeter.isNotEmpty()) gson.toJson(bleetsByBleeter, List::class.java) else throw NoBleetsDetectedException(
             "No Bleets for the user $user Detected!!", Bleet::class.java, "bleetUser", user
         )

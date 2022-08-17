@@ -11,11 +11,11 @@ class Bleets {
 
     val bleets: MutableList<Bleet> = mutableListOf<Bleet>();
 
-    public fun addBleet(bleet: Bleet) {
+    fun addBleet(bleet: Bleet) {
         this.bleets.add(bleet)
     }
 
-    public fun addAllBleets(bleetList: List<Bleet>) {
+    fun addAllBleets(bleetList: List<Bleet>) {
         this.bleets.addAll(bleetList)
     }
 
