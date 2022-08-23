@@ -9,14 +9,14 @@ import lombok.Setter
 @AllArgsConstructor
 class Bleets {
 
-    val bleets: MutableList<Bleet> = mutableListOf<Bleet>();
+    val bleetObjects: MutableList<BleetObject> = mutableListOf<BleetObject>();
 
-    fun addBleet(bleet: Bleet) {
-        this.bleets.add(bleet)
+    fun addBleetObject(bleetObject: BleetObject) {
+        this.bleetObjects.add(bleetObject)
     }
 
-    fun addAllBleets(bleetList: List<Bleet>) {
-        this.bleets.addAll(bleetList)
+    fun addAllBleetObjects(bleetObjectList: List<BleetObject>) {
+        this.bleetObjects.addAll(bleetObjectList)
     }
 
 }

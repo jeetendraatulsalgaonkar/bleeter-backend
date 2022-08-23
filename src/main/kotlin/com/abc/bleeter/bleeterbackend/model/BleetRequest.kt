@@ -19,10 +19,6 @@ class BleetRequest (
     /**
      * The person who sent out a bleet.
      */
-    val bleetUser: String,
+    val bleetUser: String
 
-    /**
-     * Time at which the bleet was sent out.
-     */
-    val bleetTimestamp: String
 )

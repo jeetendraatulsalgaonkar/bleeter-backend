@@ -16,31 +16,22 @@ interface BleetResponseMapper {
     @Mapping(target = "id", source="id")
     @Mapping(target = "bleetMessage", source="bleetMessage")
     @Mapping(target = "bleetUser", source="bleetUser")
-    @Mapping(target = "bleetTimestamp", source="bleetTimestamp")
+    @Mapping(target = "bleetTimestamp", expression ="java(bleet.bleetTimestamp.toString())")
     fun bleetToBleetResponse(bleet: Bleet) : BleetResponse
-
-    @InheritInverseConfiguration
-    @Mapping(target = "id", source="id")
-    @Mapping(target = "bleetMessage", source="bleetMessage")
-    @Mapping(target = "bleetUser", source="bleetUser")
-    @Mapping(target = "bleetTimestamp", source="bleetTimestamp")
-    fun bleetResponseToBleet(bleetResponse: BleetResponse) : Bleet
-
 
     @Mapping(target = "id", expression = "java(java.util.UUID.randomUUID().toString())")
     @Mapping(target = "bleetMessage", source="bleetMessage")
     @Mapping(target = "bleetUser", source="bleetUser")
-    @Mapping(target = "bleetTimestamp", source="bleetTimestamp")
+    @Mapping(target = "bleetTimestamp", expression = "java(new Timestamp(System.currentTimeMillis()))")
     fun bleetRequestToBleet(bleetRequest: BleetRequest) : Bleet
 
     @InheritInverseConfiguration
     @Mapping(target = "bleetMessage", source="bleetMessage")
     @Mapping(target = "bleetUser", source="bleetUser")
-    @Mapping(target = "bleetTimestamp", source="bleetTimestamp")
     fun bleetToBleetRequest(bleet: Bleet) : BleetRequest
 
     fun map(timestamp : Timestamp) : String {
-        return SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Date(timestamp.toString().toLong())).toString()
+        return SimpleDateFormat("dd/MM/yyyy HH:mm:ss.ssssss").format(Date(timestamp.toString().toLong())).toString()
     }
 
 }

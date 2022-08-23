@@ -3,9 +3,10 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
 	id("org.springframework.boot") version "2.6.6-SNAPSHOT"
 	id("io.spring.dependency-management") version "1.0.11.RELEASE"
-	kotlin("jvm") version "1.6.21"
-	kotlin("kapt") version "1.6.21"
+	kotlin("jvm") version "1.7.10"
+	kotlin("kapt") version "1.7.10"
 	kotlin("plugin.spring") version "1.6.21"
+	kotlin("plugin.lombok") version "1.7.10"
 }
 
 group = "com.abc.bleeter"
@@ -35,6 +36,8 @@ dependencies {
 	implementation("org.mapstruct:mapstruct:1.5.0.RC1")
 	implementation("org.springdoc:springdoc-openapi-ui:1.6.8")
 	implementation("org.hibernate:hibernate-validator:7.0.4.Final")
+	implementation("org.postgresql:postgresql:42.4.2")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa:2.6.6")
 	kapt("org.mapstruct:mapstruct-processor:1.5.0.RC1")
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
@@ -59,6 +62,7 @@ tasks.withType<KotlinCompile> {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
 		jvmTarget = "15"
 	}
+	allOpen {     annotation("javax.persistence.Entity") }
 }
 
 tasks.withType<Test> {
@@ -66,5 +70,4 @@ tasks.withType<Test> {
 }
 
 fun kapt(options: String) {
-
 }

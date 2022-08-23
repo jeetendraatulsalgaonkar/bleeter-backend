@@ -3,6 +3,7 @@ package com.abc.bleeter.bleeterbackend.model
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import lombok.*
 import org.springframework.data.annotation.Id
+import java.sql.Timestamp
 
 @Getter
 @Setter

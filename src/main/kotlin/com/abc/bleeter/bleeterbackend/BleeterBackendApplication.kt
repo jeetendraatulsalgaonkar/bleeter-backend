@@ -1,7 +1,6 @@
 package com.abc.bleeter.bleeterbackend
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
@@ -9,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
 
-@SpringBootApplication(exclude = [DataSourceAutoConfiguration::class, ErrorMvcAutoConfiguration::class])
+@SpringBootApplication(exclude = [ErrorMvcAutoConfiguration::class], scanBasePackages = ["com.abc.bleeter.bleeterbackend"])
 class BleeterBackendApplication
 
 fun main(args: Array<String>) {

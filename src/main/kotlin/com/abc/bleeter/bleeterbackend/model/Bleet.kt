@@ -3,40 +3,52 @@ package com.abc.bleeter.bleeterbackend.model
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import lombok.AllArgsConstructor
 import lombok.Builder
-import lombok.Getter
+import lombok.Data
 import lombok.NoArgsConstructor
-import lombok.Setter
-import org.springframework.data.annotation.Id
-import org.springframework.data.mongodb.core.mapping.Document
+import org.hibernate.annotations.Type
+import java.io.Serializable
+import java.sql.Timestamp
+import javax.persistence.*
 import javax.validation.constraints.NotNull
 
-@Getter
-@Setter
-@AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Builder
-@Document("bleets")
+@Data
 @NoArgsConstructor
-class Bleet (
+@AllArgsConstructor
+@Builder
+@Entity
+@Table(name = "BLEET")
+class Bleet : Serializable {
 
     @Id
-    val id: String,
+    @Column(name="ID", nullable = false)
+    lateinit var id: String
 
     /**
      * The actual Bleet
      */
     @NotNull
-    val bleetMessage: String,
+    @Column(name="BLEETMESSAGE", nullable = false)
+    lateinit var bleetMessage: String
 
     /**
      * The person who sent out a bleet.
      */
     @NotNull
-    val bleetUser: String,
+    @Column(name="BLEETUSER", nullable = false)
+    lateinit var bleetUser: String
+
+    /**
+     *  Image attachment in the bleet. Currently only one image per bleet supported.
+     */
+    @Lob
+    @Type(type="org.hibernate.type.BinaryType")
+    @Column(name="BLEETIMAGE", nullable = true)
+    var bleetimage: ByteArray? = null
 
     /**
      * Time at which the bleet was sent out.
      */
-    @NotNull
-    val bleetTimestamp: String
-    )
+    @Column(name="BLEETTIMESTAMP", nullable = true)
+    lateinit var bleetTimestamp: Timestamp
+}
